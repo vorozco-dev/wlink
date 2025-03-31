@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirección a WhatsApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    #avisoTikTok {
+      display: none;
+      background: #fff3cd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+      color: #856404;
+    }
+
+    a#botonWsp {
+      display: inline-block;
+      padding: 14px 24px;
+      background-color: #25d366;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    a#botonWsp:hover {
+      background-color: #1ebd5a;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="avisoTikTok">
+    ⚠️ Estás usando TikTok. Tocá los 3 puntitos arriba y seleccioná <strong>"Abrir en navegador"</strong> para poder abrir WhatsApp correctamente.
+  </div>
+
+  <h1>¡Estás a un paso de contactarnos por WhatsApp!</h1>
+  <p>Hacé clic en el botón para abrir la conversación en WhatsApp.</p>
+
+  <a href="https://wa.me/5491123456789?text=Hola%2C%20vengo%20de%20TikTok" id="botonWsp">
+    Ir a WhatsApp
+  </a>
+
+  <script>
+    // Detectar si el navegador es TikTok
+    const isTikTok = navigator.userAgent.toLowerCase().includes('tiktok');
+
+    if (isTikTok) {
+      document.getElementById('avisoTikTok').style.display = 'block';
+    } else {
+      // Si NO es TikTok, redirigir automáticamente
+      setTimeout(() => {
+        window.location.href = "https://wa.me/5491123456789?text=Hola%2C%20vengo%20de%20TikTok";
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
