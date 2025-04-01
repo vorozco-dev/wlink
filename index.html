@@ -23,45 +23,70 @@
       color: #856404;
     }
 
-    a#botonWsp {
+    .boton {
       display: inline-block;
       padding: 14px 24px;
-      background-color: #25d366;
-      color: white;
       font-size: 18px;
       border-radius: 8px;
       text-decoration: none;
       margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    a#botonWsp {
+      background-color: #25d366;
+      color: white;
     }
 
     a#botonWsp:hover {
       background-color: #1ebd5a;
+    }
+
+    .botonNavegador {
+      background-color: #007bff;
+      color: white;
+      margin-top: 15px;
+    }
+
+    .botonNavegador:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
   <div id="avisoTikTok">
-    ⚠️ Estás usando TikTok. Tocá los 3 puntitos arriba y seleccioná <strong>"Abrir en navegador"</strong> para poder abrir WhatsApp correctamente.
+    ⚠️ Estás usando TikTok. Tocá los <strong>3 puntitos arriba</strong> y seleccioná <strong>"Abrir en navegador"</strong> para poder abrir WhatsApp correctamente.
+    <br>
+    <a href="#" class="boton botonNavegador" onclick="alert('Usá los 3 puntos arriba a la derecha y elegí \"Abrir en navegador\"')">
+      ¿Cómo abrir en navegador?
+    </a>
   </div>
 
   <h1>¡Estás a un paso de contactarnos por WhatsApp!</h1>
   <p>Hacé clic en el botón para abrir la conversación en WhatsApp.</p>
 
-  <a href="https://wa.me/59169551745?text=Hola%2C%20vengo%20de%20TikTok" id="botonWsp">
+  <a href="https://wa.me/59169551745?text=Hola%2C%20vengo%20de%20TikTok" id="botonWsp" class="boton">
     Ir a WhatsApp
   </a>
 
   <script>
-    // Detectar si el navegador es TikTok
     const isTikTok = navigator.userAgent.toLowerCase().includes('tiktok');
+    const botonWsp = document.getElementById('botonWsp');
+    const aviso = document.getElementById('avisoTikTok');
 
     if (isTikTok) {
-      document.getElementById('avisoTikTok').style.display = 'block';
+      aviso.style.display = 'block';
+      // Desactivar botón de WhatsApp
+      botonWsp.href = "#";
+      botonWsp.onclick = function(e) {
+        e.preventDefault();
+        alert("Por favor, abrí esta página en tu navegador para continuar.");
+      };
     } else {
-      // Si NO es TikTok, redirigir automáticamente
+      // Redirección automática si no es TikTok
       setTimeout(() => {
-        window.location.href = "https://wa.me/59169551745?text=Hola%2C%20vengo%20de%20TikTok";
+        window.location.href = botonWsp.href;
       }, 2000);
     }
   </script>
